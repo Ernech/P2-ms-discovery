@@ -7,25 +7,30 @@ services:
     ports:
       - "8763:8763"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
   ms-config-server:
     image: ms-config-server:0.0.1
     mem_limit: 200m
     ports:
       - "8887:8887"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
     depends_on:
       ms-discovery:
         condition: service_started
+  zipkin:
+    image: openzipkin/zipkin
+    mem_limit: 200m
+    ports:
+      - "9411:9411"
   ms-student:
     image: ms-student:0.0.1
     mem_limit: 200m
     #    ports:
     #    - "6945:6945"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.17:9411"
     depends_on:
       ms-discovery:
         condition: service_started
@@ -35,8 +40,8 @@ services:
     ports:
       - "8181:8181"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.17:9411"
     depends_on:
       ms-discovery:
         condition: service_started
@@ -46,8 +51,8 @@ services:
     #    ports:
     #    - "7878:7878"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.17:9411"
     depends_on:
       ms-discovery:
         condition: service_started
@@ -57,8 +62,8 @@ services:
     #    ports:
     #    - "8743:8743"
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.17:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.17:9411"
     depends_on:
       ms-discovery:
         condition: service_started
