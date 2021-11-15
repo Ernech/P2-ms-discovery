@@ -3,14 +3,14 @@ spring:
     name: ms-discovery
 
 server:
-  port: 8763
+  port: ${SERVER_PORT:8763}
 
 eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
     service-url:
-      defaultZone: http://localhost:8763/eureka
+      defaultZone: ${ERUEKA_URI:http://localhost:8763/eureka}
   server:
     enableSelfPreservation: false
     evictionIntervalTimerInMs: 3000
