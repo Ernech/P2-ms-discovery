@@ -41,7 +41,7 @@ services:
       ms-discovery:
         condition: service_started
   ms-gateway:
-    image: ms-gateway:0.0.2
+    image: ms-gateway:0.0.4
     mem_limit: 200m
     ports:
       - "8181:8181"
@@ -53,8 +53,9 @@ services:
         condition: service_started
     volumes:
       - "/D/Semestre 2-2021/Arquitectura del SW/tarea/logs:/opt/arquitectura/logs"
+
   ms-teacher:
-    image: ms-teacher:0.0.2
+    image: ms-teacher:0.0.3
     mem_limit: 200m
     #    ports:
     #    - "7878:7878"
