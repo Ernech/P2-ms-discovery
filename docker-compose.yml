@@ -20,7 +20,7 @@ services:
       - software
       - arquitectura
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
+      - "EUREKA_URI=http://192.168.1.15:8763/eureka"
     volumes:
       - "D:/Semestre 2-2021/Arquitectura del SW/tarea/logs/ms-discovery:/opt/arquitectura/logs"
   zipkin:
@@ -29,15 +29,15 @@ services:
     ports:
       - "9411:9411"
   ms-student:
-    image: ms-student:0.0.4
+    image: ms-student:0.0.5
     mem_limit: 200m
     ports:
       - "6945:6945"
     networks:
       - software
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.15:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.15:9411"
       - "CONFIG_URI=http://ms-config-server:8887"
     volumes:
     - /D/Semestre 2-2021/Arquitectura del SW/tarea/logs2/ms-student:/opt/arquitectura/logs
@@ -45,7 +45,7 @@ services:
       ms-discovery:
         condition: service_started
   ms-gateway:
-    image: ms-gateway:0.0.4
+    image: ms-gateway:0.0.6
     mem_limit: 200m
     ports:
       - "8181:8181"
@@ -53,8 +53,8 @@ services:
       - software
       - arquitectura
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.15:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.15:9411"
     depends_on:
       ms-discovery:
         condition: service_started
@@ -62,7 +62,7 @@ services:
       - "D:/Semestre 2-2021/Arquitectura del SW/tarea/logs/ms-gateway:/opt/arquitectura/logs"
 
   ms-teacher:
-    image: ms-teacher:0.0.4
+    image: ms-teacher:0.0.5
     mem_limit: 200m
     ports:
       - "7878:7878"
@@ -70,8 +70,8 @@ services:
       - software
       - arquitectura
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.15:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.15:9411"
       - "CONFIG_URI=http://ms-config-server:8887"
     depends_on:
       ms-discovery:
@@ -79,7 +79,7 @@ services:
     volumes:
       - "D:/Semestre 2-2021/Arquitectura del SW/tarea/logs/ms-teacher:/opt/arquitectura/logs"
   ms-course:
-    image: ms-course:0.0.3
+    image: ms-course:0.0.4
     mem_limit: 200m
     ports:
       - "8743:8743"
@@ -87,8 +87,8 @@ services:
       - software
       - arquitectura
     environment:
-      - "EUREKA_URI=http://192.168.1.14:8763/eureka"
-      - "ZIPKIN_URI=http://192.168.1.14:9411"
+      - "EUREKA_URI=http://192.168.1.15:8763/eureka"
+      - "ZIPKIN_URI=http://192.168.1.15:9411"
       - "CONFIG_URI=http://ms-config-server:8887"
     depends_on:
       ms-discovery:
